@@ -1,8 +1,6 @@
 import pygame
 from pygame.locals import Rect
-
-SCREEN_SIZE = (300, 374)
-""" The size of the screen in pixels. """
+import screen_constants
 
 FRAME_RATE = 30
 
@@ -64,7 +62,7 @@ if __name__ == '__main__':
     pygame.init()
 
     clock = pygame.time.Clock()
-    screen = pygame.display.set_mode(SCREEN_SIZE)
+    screen = pygame.display.set_mode(screen_constants.SCREEN_SIZE)
 
     pygame.time.set_timer(pygame.USEREVENT, FRAME_RATE * 10)
     pygame.display.set_caption(TEXT_TITLE)
