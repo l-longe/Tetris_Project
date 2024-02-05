@@ -8,6 +8,19 @@ TEXT_TITLE = "TETRIS"
 """ The title of the game. """
 
 
+def _update_loop():
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+        game_window.render()
+        pygame.display.update()
+
+    pygame.quit()
+
+
 if __name__ == '__main__':
     pygame.init()
 
@@ -19,13 +32,4 @@ if __name__ == '__main__':
 
     game_window.screen = _screen  # Save a reference to the screen in screen_renderer
 
-    run = True
-    while run:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-
-        game_window.render()
-        pygame.display.update()
-
-    pygame.quit()
+    _update_loop()
