@@ -3,14 +3,22 @@
 
 import pygame
 from pygame.locals import Rect
-from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE, SCREEN_SIZE
+from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE
 from ui_constants import COLOUR_BKG_GREY_1, COLOUR_BKG_GREY_3
 
 screen: pygame.Surface
 """ A reference to the screen to draw on. """
 
 
-def draw_grid():
+def render():
+    screen.fill(COLOUR_BKG_GREY_1)
+    _draw_grid()
+
+
+def _draw_grid():
+    """
+    Draws the grid based on the row and column count.
+    """
     for x in range(BOARD_COLUMN_COUNT):
         for y in range(BOARD_ROW_COUNT):
             pos_x = BLOCK_SIZE + (BLOCK_SIZE * x)  # add 1 to x to account for the border

@@ -1,7 +1,6 @@
 import pygame
 import game_window
 from screen_constants import SCREEN_SIZE
-from ui_constants import COLOUR_BKG_GREY_1
 
 FRAME_RATE = 30
 
@@ -26,8 +25,7 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 run = False
 
-        _screen.fill(COLOUR_BKG_GREY_1)
-        game_window.draw_grid()
+        game_window.render()
         pygame.display.update()
 
     pygame.quit()
