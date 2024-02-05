@@ -1,19 +1,11 @@
 import pygame
 from pygame.locals import Rect
-import screen_constants
+from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE, SCREEN_SIZE
 
 FRAME_RATE = 30
 
 TEXT_TITLE = "TETRIS"
 """ The title of the game. """
-
-BOARD_COLUMN_COUNT = 10
-""" The number of columns in the board. """
-BOARD_ROW_COUNT = 20
-""" The number of rows in the board. """
-
-BLOCK_SIZE = 17
-""" The size (height & width) of a single block in pixels. """
 
 # Background colors
 COLOUR_BKG_BLACK = (10, 10, 10)
@@ -62,7 +54,7 @@ if __name__ == '__main__':
     pygame.init()
 
     clock = pygame.time.Clock()
-    screen = pygame.display.set_mode(screen_constants.SCREEN_SIZE)
+    screen = pygame.display.set_mode(SCREEN_SIZE)
 
     pygame.time.set_timer(pygame.USEREVENT, FRAME_RATE * 10)
     pygame.display.set_caption(TEXT_TITLE)
