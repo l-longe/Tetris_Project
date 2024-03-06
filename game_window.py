@@ -67,3 +67,11 @@ def _draw_grid_cell(pos_x, pos_y, color):
         Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE),
         1
     )
+
+
+def draw_mino(grid_4x4: list, pos_x: int, pos_y: int):
+    for _i in range(4):
+        for _j in range(4):
+            if grid_4x4[_i][_j] != 0:
+                grid[pos_x + _j][pos_y + _i] = grid_4x4[_i][_j]
+
