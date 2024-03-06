@@ -18,13 +18,13 @@ def _update_loop():
             if event.type == pygame.QUIT:
                 run = False
 
-                game_window.draw_mino(tetriminos.I_rotation_1, 3, 0)
-                game_window.draw_mino(tetriminos.J_rotation_1, 3, 3)
-                game_window.draw_mino(tetriminos.L_rotation_1, 3, 6)
-                game_window.draw_mino(tetriminos.O_rotation_1, 3, 9)
-                game_window.draw_mino(tetriminos.S_rotation_1, 3, 12)
-                game_window.draw_mino(tetriminos.T_rotation_1, 3, 15)
-                game_window.draw_mino(tetriminos.Z_rotation_1, 3, 18)
+                # game_window.draw_mino(tetriminos.I_rotation_1, 3, 0)
+                # game_window.draw_mino(tetriminos.J_rotation_1, 3, 3)
+                # game_window.draw_mino(tetriminos.L_rotation_1, 3, 6)
+                # game_window.draw_mino(tetriminos.O_rotation_1, 3, 9)
+                # game_window.draw_mino(tetriminos.S_rotation_1, 3, 12)
+                # game_window.draw_mino(tetriminos.T_rotation_1, 3, 15)
+                # game_window.draw_mino(tetriminos.Z_rotation_1, 3, 18)
 
         game_window.render()
         pygame.display.update()
