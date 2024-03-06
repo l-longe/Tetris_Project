@@ -4,7 +4,6 @@
 import pygame
 from pygame.locals import Rect
 from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE
-from ui_constants import COLOUR_BKG_GREY_1
 import ui_constants
 
 screen: pygame.Surface
