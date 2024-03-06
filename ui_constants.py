@@ -9,3 +9,19 @@ COLOUR_BKG_GREY_2 = (35, 35, 35)
 COLOUR_BKG_GREY_3 = (55, 55, 55)
 COLOUR_BKG_BEIGE = (255, 255, 204)
 COLOUR_BKG_BROWN = (153, 102, 51)
+
+# Block colors
+_COLOUR_BLOCK_I_CYAN = (102, 153, 204)  # A lighter shade of blue for (I)
+_COLOUR_BLOCK_J_PINK = (153, 51, 102)  # A muted pink for (J)
+_COLOUR_BLOCK_L_LIGHT_GREEN = (204, 204, 0)  # A vibrant yellow-green for (L)
+_COLOUR_BLOCK_O_ORANGE = (255, 153, 51)  # A bright orange for (O)
+_COLOUR_BLOCK_S_TEAL = (0, 153, 153)  # A teal color for (S)
+_COLOUR_BLOCK_T_MAGENTA = (204, 0, 102)  # A deep magenta for (T)
+_COLOUR_BLOCK_DARK_Z_GREEN = (51, 102, 0)  # A dark green for (Z)
+
+# Block colors
+BLOCK_COLOURS = [COLOUR_BKG_GREY_2,
+                 _COLOUR_BLOCK_I_CYAN, _COLOUR_BLOCK_J_PINK, _COLOUR_BLOCK_L_LIGHT_GREEN,
+                 _COLOUR_BLOCK_O_ORANGE, _COLOUR_BLOCK_S_TEAL, _COLOUR_BLOCK_T_MAGENTA,
+                 _COLOUR_BLOCK_DARK_Z_GREEN, COLOUR_BKG_GREY_3]
+""" The colors of the blocks in the game. """
