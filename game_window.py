@@ -28,7 +28,7 @@ def initialise_grid_cell_colours():
 
 
 def render():
-    screen.fill(COLOUR_BKG_GREY_1)
+    screen.fill(ui_constants.COLOUR_BKG_GREY_1)
     _draw_grid()
 
 
@@ -63,7 +63,7 @@ def _draw_grid_cell(pos_x, pos_y, color):
     # Draw the border of the cell
     pygame.draw.rect(
         screen,
-        COLOUR_BKG_GREY_1,
+        ui_constants.COLOUR_BKG_GREY_1,
         Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE),
         1
     )
