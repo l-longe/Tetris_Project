@@ -5,6 +5,7 @@ import pygame
 from pygame.locals import Rect
 from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE
 import ui_constants
+from gamestate import GameState
 
 screen: pygame.Surface
 """ A reference to the screen to draw on. """
@@ -69,9 +70,11 @@ def _draw_grid_cell(pos_x, pos_y, color):
     )
 
 
-def draw_mino(grid_4x4: list, pos_x: int, pos_y: int):
+def draw_mino(game_state: GameState):
+    grid_4x4: list = game_state.mino_4x4
+    pos_x: int = game_state.pos_x
+    pos_y: int = game_state.pos_y
     for _i in range(4):
         for _j in range(4):
             if grid_4x4[_i][_j] != 0:
                 grid[pos_x + _j][pos_y + _i] = grid_4x4[_i][_j]
-

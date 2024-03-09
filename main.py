@@ -4,11 +4,21 @@ import pygame
 import game_window
 from screen_constants import SCREEN_SIZE
 import tetriminos
+from gamestate import GameState
 
 FRAME_RATE = 30
 
 TEXT_TITLE = "TETRIS"
 """ The title of the game. """
+
+
+def _select_hardcoded_mino():
+    """ Selects a hardcoded mino and where to place it on the grid. """
+    game_state.pos_x = 3
+    game_state.pos_y = 0
+    game_state.mino_4x4 = tetriminos.I_rotation_1
+
+    game_window.draw_mino(game_state)
 
 
 def _update_loop():
@@ -18,14 +28,7 @@ def _update_loop():
             if event.type == pygame.QUIT:
                 run = False
 
-                # game_window.draw_mino(tetriminos.I_rotation_1, 3, 0)
-                # game_window.draw_mino(tetriminos.J_rotation_1, 3, 3)
-                # game_window.draw_mino(tetriminos.L_rotation_1, 3, 6)
-                # game_window.draw_mino(tetriminos.O_rotation_1, 3, 9)
-                # game_window.draw_mino(tetriminos.S_rotation_1, 3, 12)
-                # game_window.draw_mino(tetriminos.T_rotation_1, 3, 15)
-                # game_window.draw_mino(tetriminos.Z_rotation_1, 3, 18)
-
+        _select_hardcoded_mino()
         game_window.render()
         pygame.display.update()
 
@@ -34,6 +37,8 @@ def _update_loop():
 
 if __name__ == '__main__':
     pygame.init()
+
+    game_state = GameState()
 
     clock = pygame.time.Clock()
     _screen = pygame.display.set_mode(SCREEN_SIZE)
