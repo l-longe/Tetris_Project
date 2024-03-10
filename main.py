@@ -16,8 +16,7 @@ def _select_hardcoded_mino():
     """ Selects a hardcoded mino and where to place it on the grid. """
     game_state.pos_x = 3
     game_state.pos_y = 0
-    game_state.mino_4x4 = tetriminos.I_rotation_1
-
+    game_state.mino_4x4 = tetriminos.get(1).rotation_1
     game_window.draw_mino(game_state)
 
 

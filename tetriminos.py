@@ -1,141 +1,167 @@
 # tetriminos.py
 """ This module contains the tetrimino class and the 7 standard tetrimino-shapes. """
 
-_ls_tetriminos = ['I', 'J', 'L', 'O', 'S', 'T', 'Z']
-""" The list of all tetriminos. """
 
-I_rotation_1 = [
+class _Tetrimino:
+    rotation_1: list
+    """ The first rotation of the tetrimino. """
+
+    rotation_2: list
+    """ The second rotation of the tetrimino. """
+
+    rotation_3: list
+    """ The third rotation of the tetrimino."""
+
+    rotation_4: list
+    """ The fourth rotation of the tetrimino. """
+
+    def __init__(self, _name: str):
+        self.name = _name
+
+
+I: _Tetrimino = _Tetrimino("I")
+I.rotation_1 = [
     [0, 0, 0, 0],
     [1, 1, 1, 1],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-I_rotation_2 = [
+I.rotation_2 = [
     [0, 0, 1, 0],
     [0, 0, 1, 0],
     [0, 0, 1, 0],
     [0, 0, 1, 0]
 ]
-I_rotation_3 = [
+I.rotation_3 = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [1, 1, 1, 1],
     [0, 0, 0, 0]
 ]
-I_rotation_4 = [
+I.rotation_4 = [
     [0, 1, 0, 0],
     [0, 1, 0, 0],
     [0, 1, 0, 0],
     [0, 1, 0, 0]
 ]
 
-J_rotation_1 = [
+
+J: _Tetrimino = _Tetrimino("J")
+J.rotation_1 = [
     [2, 0, 0, 0],
     [2, 2, 2, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-J_rotation_2 = [
+J.rotation_2 = [
     [0, 2, 2, 0],
     [0, 2, 0, 0],
     [0, 2, 0, 0],
     [0, 0, 0, 0]
 ]
-J_rotation_3 = [
+J.rotation_3 = [
     [0, 0, 0, 0],
     [2, 2, 2, 0],
     [0, 0, 2, 0],
     [0, 0, 0, 0]
 ]
-J_rotation_4 = [
+J.rotation_4 = [
     [0, 2, 0, 0],
     [0, 2, 0, 0],
     [2, 2, 0, 0],
     [0, 0, 0, 0]
 ]
 
-L_rotation_1 = [
+
+L: _Tetrimino = _Tetrimino("L")
+L.rotation_1 = [
     [0, 0, 3, 0],
     [3, 3, 3, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-L_rotation_2 = [
+L.rotation_2 = [
     [0, 3, 0, 0],
     [0, 3, 0, 0],
     [0, 3, 3, 0],
     [0, 0, 0, 0]
 ]
-L_rotation_3 = [
+L.rotation_3 = [
     [0, 0, 0, 0],
     [3, 3, 3, 0],
     [3, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-L_rotation_4 = [
+L.rotation_4 = [
     [3, 3, 0, 0],
     [0, 3, 0, 0],
     [0, 3, 0, 0],
     [0, 0, 0, 0]
 ]
 
-O_rotation_1 = [
+
+O: _Tetrimino = _Tetrimino("O")
+O.rotation_1 = [
     [0, 4, 4, 0],
     [0, 4, 4, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-O_rotation_2 = [
+O.rotation_2 = [
     [0, 4, 4, 0],
     [0, 4, 4, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-O_rotation_3 = [
+O.rotation_3 = [
     [0, 4, 4, 0],
     [0, 4, 4, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-O_rotation_4 = [
+O.rotation_4 = [
     [0, 4, 4, 0],
     [0, 4, 4, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
 
-S_rotation_1 = [
+
+S: _Tetrimino = _Tetrimino("S")
+S.rotation_1 = [
     [0, 5, 5, 0],
     [5, 5, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-S_rotation_2 = [
+S.rotation_2 = [
     [0, 5, 0, 0],
     [0, 5, 5, 0],
     [0, 0, 5, 0],
     [0, 0, 0, 0]
 ]
-S_rotation_3 = [
+S.rotation_3 = [
     [0, 0, 0, 0],
     [0, 5, 5, 0],
     [5, 5, 0, 0],
     [0, 0, 0, 0]
 ]
-S_rotation_4 = [
+S.rotation_4 = [
     [5, 0, 0, 0],
     [5, 5, 0, 0],
     [0, 5, 0, 0],
     [0, 0, 0, 0]
 ]
 
-T_rotation_1 = [
+
+T: _Tetrimino = _Tetrimino("T")
+T.rotation_1 = [
     [0, 6, 0, 0],
     [6, 6, 6, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-T_rotation_2 = [
+T.rotation_2 = [
     [0, 6, 0, 0],
     [0, 6, 6, 0],
     [0, 6, 0, 0],
@@ -147,33 +173,56 @@ T_rotation_3 = [
     [0, 6, 0, 0],
     [0, 0, 0, 0]
 ]
-T_rotation_4 = [
+T.rotation_4 = [
     [0, 6, 0, 0],
     [6, 6, 0, 0],
     [0, 6, 0, 0],
     [0, 0, 0, 0]
 ]
-Z_rotation_1 = [
+
+
+Z: _Tetrimino = _Tetrimino("Z")
+Z.rotation_1 = [
     [7, 7, 0, 0],
     [0, 7, 7, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ]
-Z_rotation_2 = [
+Z.rotation_2 = [
     [0, 0, 7, 0],
     [0, 7, 7, 0],
     [0, 7, 0, 0],
     [0, 0, 0, 0]
 ]
-Z_rotation_3 = [
+Z.rotation_3 = [
     [0, 0, 0, 0],
     [7, 7, 0, 0],
     [0, 7, 7, 0],
     [0, 0, 0, 0]
 ]
-Z_rotation_4 = [
+Z.rotation_4 = [
     [0, 7, 0, 0],
     [7, 7, 0, 0],
     [7, 0, 0, 0],
     [0, 0, 0, 0]
 ]
+
+
+_MAP = [I, J, L, O, S, T, Z]
+""" A private list of all the tetrimino shapes. """
+
+
+def get(offset: int) -> _Tetrimino:
+    """
+    Returns the tetrimino based on its offset index.
+
+    - get(1) returns the I tetrimino,
+    - get(2) returns the J tetrimino, etc.
+
+    The numbers are offset by 1
+    so that they correspond to the colours in the ui_constants.BLOCK_COLOURS list.
+
+    :param offset: An offset index of the tetrimino in the _MAP list.
+    :return: The tetrimino.
+    """
+    return _MAP[offset - 1]
