@@ -3,7 +3,6 @@
 import pygame
 import game_window
 from screen_constants import SCREEN_SIZE
-import tetriminos
 from gamestate import GameState
 
 FRAME_RATE = 30
