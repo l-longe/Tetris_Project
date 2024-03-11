@@ -7,14 +7,17 @@ class GameState:
     Represents the current state of the game, including all variables that change as the game progresses.
 
     Attributes:
-        mino_4x4 (list): A nested list representing how to draw and paint the current mino.
+        mino (int): The offset index of the current falling mino.
 
         pos_x (int): The horizontal position (column) of the current falling mino.
         pos_y (int): The vertical position (row) of the current falling mino.
+        rotation (int): The rotation state of the current falling mino. 0=0°, 1=90°, 2=180°, 3=270°
     """
 
     def __init__(self):
         self.mino_4x4 = []
+        self.mino: int = 1
 
         self.pos_x: int = 0
         self.pos_y: int = 0
+        self.rotation: int = 0

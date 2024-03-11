@@ -6,6 +6,7 @@ from pygame.locals import Rect
 from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE
 import ui_constants
 from gamestate import GameState
+import tetriminos
 
 screen: pygame.Surface
 """ A reference to the screen to draw on. """
@@ -71,7 +72,9 @@ def _draw_grid_cell(pos_x, pos_y, color):
 
 
 def draw_mino(game_state: GameState):
-    grid_4x4: list = game_state.mino_4x4
+    mino = tetriminos.get(game_state.mino)
+    grid_4x4: list = mino.get_rotated_grid(game_state.rotation)
+
     pos_x: int = game_state.pos_x
     pos_y: int = game_state.pos_y
     for _i in range(4):
