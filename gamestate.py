@@ -12,6 +12,8 @@ class GameState:
         pos_x (int): The horizontal position (column) of the current falling mino.
         pos_y (int): The vertical position (row) of the current falling mino.
         rotation (int): The rotation state of the current falling mino. 0=0°, 1=90°, 2=180°, 3=270°
+
+        is_quit_triggered (bool): True when a quit action is triggered by the user.
     """
 
     def __init__(self):
@@ -21,3 +23,5 @@ class GameState:
         self.pos_x: int = 0
         self.pos_y: int = 0
         self.rotation: int = 0
+
+        self.is_quit_triggered: bool = False
