@@ -29,7 +29,7 @@ def initialise_grid_cell_colours():
         grid.append(row)
 
 
-def render():
+def render():  # TODO: rename to draw_grid
     screen.fill(ui_constants.COLOUR_BKG_GREY_1)
     _draw_grid()
 
@@ -71,7 +71,7 @@ def _draw_grid_cell(pos_x, pos_y, color):
     )
 
 
-def draw_mino(game_state: GameState):
+def draw_mino(game_state: GameState):  # TODO: rename to draw_current_mino
     mino = tetriminos.get(game_state.mino)
     grid_4x4: list = mino.get_rotated_grid(game_state.rotation)
 
