@@ -20,7 +20,7 @@ class GameState:
         self.mino_4x4 = []
         self.mino: int = 1
 
-        self.pos_x: int = 0
+        self.pos_x: int = 3
         self.pos_y: int = 0
         self.rotation: int = 0
 

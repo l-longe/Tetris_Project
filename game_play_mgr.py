@@ -15,18 +15,21 @@ def game_play_loop(game_state: GameState):
             game_state.is_quit_triggered = True
 
         elif event.type == USEREVENT:
-            _select_hardcoded_mino(game_state)
-
-            game_window.render()
+            _draw_minos(game_state)
             pygame.display.update()
 
 
-def _select_hardcoded_mino(game_state: GameState):
-    """ Selects a hardcoded mino and where to place it on the grid. """
-    game_state.mino = 1
+def _draw_minos(game_state: GameState):
+    """
+    Draws the minos on the screen.
+    Steps:
+    1. Draw the mino
+    2. Render the grid
+    3. Erase the current mino - not implemented !
+    4. Increase pos_y by 1, if mino is not at the bottom  - incomplete !
 
-    game_state.pos_x = 3
-    game_state.pos_y = 0
-    game_state.rotation = 0
-
+    :param game_state: Current game state and variables
+    """
     game_window.draw_mino(game_state)
+    game_window.render()
+    game_state.pos_y += 1
