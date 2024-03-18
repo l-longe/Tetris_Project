@@ -35,6 +35,5 @@ if __name__ == '__main__':
     pygame.display.set_caption(TEXT_TITLE)
 
     game_window.screen = _screen  # Save a reference to the screen in screen_renderer
-    game_window.initialise_grid_cell_colours()
-
+    game_window.initialise_grid_cell_colours(game_state)
     _update_loop()
