@@ -31,7 +31,7 @@ def _draw_minos(game_state: GameState):
 
     :param game_state: Current game state and variables
     """
-    game_window.draw_mino(game_state)
+    game_window.draw_current_mino(game_state)
     game_window.render(game_state)
     game_window.erase_current_mino(game_state)
 

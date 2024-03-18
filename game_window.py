@@ -67,12 +67,21 @@ def _draw_grid_cell(pos_x, pos_y, color):
     )
 
 
-def draw_mino(game_state: GameState):  # TODO: rename to draw_current_mino
+def draw_current_mino(game_state: GameState):
+    """ Draws the current falling tetrimino.
+
+    :param game_state: Current game state and variables
+    """
+
+    # Choose the correct Tetrimino based on mino value
     mino = tetriminos.get(game_state.mino)
+    # Get the tetrimino's 4x4 grid based on it's rotation
     grid_4x4: list = mino.get_rotated_grid(game_state.rotation)
 
     pos_x: int = game_state.pos_x
     pos_y: int = game_state.pos_y
+
+    # Draw the current mino
     for _i in range(4):
         for _j in range(4):
             if grid_4x4[_i][_j] != 0:
