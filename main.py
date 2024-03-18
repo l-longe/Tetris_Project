@@ -5,6 +5,7 @@ import game_play_mgr
 import game_window
 from gamestate import GameState
 from screen_constants import SCREEN_SIZE
+import tetrimino_check
 
 FRAME_RATE = 30
 
@@ -34,6 +35,7 @@ if __name__ == '__main__':
     pygame.time.set_timer(pygame.USEREVENT, FRAME_RATE * 10)
     pygame.display.set_caption(TEXT_TITLE)
 
+    tetrimino_check.game_state = game_state  # Save a reference to the game state in tetrimino_check
     game_window.screen = _screen  # Save a reference to the screen in screen_renderer
     game_window.initialise_grid_cell_colours(game_state)
     _update_loop()
