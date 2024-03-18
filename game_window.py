@@ -7,6 +7,7 @@ from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE
 import ui_constants
 from gamestate import GameState
 import tetriminos
+import tetrimino_check
 
 screen: pygame.Surface
 """ A reference to the screen to draw on. """
@@ -67,8 +68,8 @@ def _draw_grid_cell(pos_x, pos_y, color):
     )
 
 
-def draw_current_mino(game_state: GameState):
-    """ Draws the current falling tetrimino.
+def draw_current_mino_and_ghost(game_state: GameState):
+    """ Draws the current falling tetrimino, and it's ghost on the board.
 
     :param game_state: Current game state and variables
     """
@@ -78,10 +79,20 @@ def draw_current_mino(game_state: GameState):
     # Get the tetrimino's 4x4 grid based on it's rotation
     grid_4x4: list = mino.get_rotated_grid(game_state.rotation)
 
-    pos_x: int = game_state.pos_x
-    pos_y: int = game_state.pos_y
+    # Set ghost position
+    gx, gy = game_state.pos_x, game_state.pos_y
+    while not tetrimino_check.is_at_bottom(gx, gy, game_state.mino, game_state.rotation):
+        gy += 1  # place the ghost at the lowest possible position
+
+    # Draw ghost
+    for _i in range(4):
+        for _j in range(4):
+            if grid_4x4[_i][_j] != 0:
+                game_state.grid[gx + _j][gy + _i] = 8
 
     # Draw the current mino
+    pos_x: int = game_state.pos_x
+    pos_y: int = game_state.pos_y
     for _i in range(4):
         for _j in range(4):
             if grid_4x4[_i][_j] != 0:
