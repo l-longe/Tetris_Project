@@ -81,3 +81,19 @@ def draw_mino(game_state: GameState):  # TODO: rename to draw_current_mino
         for _j in range(4):
             if grid_4x4[_i][_j] != 0:
                 grid[pos_x + _j][pos_y + _i] = grid_4x4[_i][_j]
+
+
+def erase_current_mino(game_state: GameState):
+    # Choose the correct tetrimino instance based on _mino value
+    mino = tetriminos.get(game_state.mino)
+
+    # Get the tetrimino's 4x4 grid based on it's rotation
+    grid_4x4: list = mino.get_rotated_grid(game_state.rotation)
+
+    pos_x: int = game_state.pos_x
+    pos_y: int = game_state.pos_y
+
+    for _i in range(4):
+        for _j in range(4):
+            if grid_4x4[_i][_j] != 0:  # if the cell is not empty
+                grid[pos_x + _j][pos_y + _i] = 0

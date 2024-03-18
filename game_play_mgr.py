@@ -25,11 +25,12 @@ def _draw_minos(game_state: GameState):
     Steps:
     1. Draw the mino
     2. Render the grid
-    3. Erase the current mino - not implemented !
+    3. Erase the current mino
     4. Increase pos_y by 1, if mino is not at the bottom  - incomplete !
 
     :param game_state: Current game state and variables
     """
     game_window.draw_mino(game_state)
     game_window.render()
+    game_window.erase_current_mino(game_state)
     game_state.pos_y += 1
