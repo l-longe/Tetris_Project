@@ -2,7 +2,7 @@
 """ This module contains the game play loop. """
 
 import pygame
-from pygame.locals import QUIT, USEREVENT
+import pygame.locals as py_locals
 import game_window
 from gamestate import GameState
 import tetrimino_check
@@ -12,12 +12,16 @@ def game_play_loop(game_state: GameState):
     """ The main game loop. """
     for event in pygame.event.get():
 
-        if event.type == QUIT:
+        if event.type == py_locals.QUIT:
             game_state.is_quit_triggered = True
 
-        elif event.type == USEREVENT:
+        elif event.type == py_locals.USEREVENT:
             _draw_minos(game_state)
-            pygame.display.update()
+
+        elif event.type == py_locals.KEYDOWN:
+            _process_user_input(game_state, event)
+
+        pygame.display.update()
 
 
 def _draw_minos(game_state: GameState):
@@ -38,3 +42,53 @@ def _draw_minos(game_state: GameState):
     # Move mino down if it is not at the bottom
     if not tetrimino_check.is_at_bottom(game_state.pos_x, game_state.pos_y, game_state.mino, game_state.rotation):
         game_state.pos_y += 1
+
+
+def _process_user_input(game_state: GameState, event):
+    """
+    Converts user input into game actions. \n
+    - K_LEFT: Left = Move left
+    - K_RIGHT: Right = Move right
+
+    :param game_state: Current game state and variables
+    :param event: The event to process
+    """
+    game_window.erase_current_mino_and_ghost(game_state)
+
+    if event.key == py_locals.K_LEFT:
+        _process_move_left(game_state)
+
+    elif event.key == py_locals.K_RIGHT:
+        _process_move_right(game_state)
+
+
+def _process_move_left(game_state):
+    """
+    Processes a left move.
+
+    :param game_state: Current game state and variables
+    """
+
+    # Move left if not at left edge
+    if not tetrimino_check.is_at_left_edge(game_state.pos_x, game_state.pos_y, game_state.mino, game_state.rotation):
+        game_state.pos_x -= 1
+
+    # Now draw the mino, ghost and sidebar
+    game_window.draw_current_mino_and_ghost(game_state)
+    game_window.render(game_state)
+
+
+def _process_move_right(game_state: GameState):
+    """
+    Processes a right move.
+
+    :param game_state: Current game state and variables
+    """
+
+    # Move right if not at right edge
+    if not tetrimino_check.is_at_right_edge(game_state.pos_x, game_state.pos_y, game_state.mino, game_state.rotation):
+        game_state.pos_x += 1
+
+    # Now draw the mino, ghost and sidebar
+    game_window.draw_current_mino_and_ghost(game_state)
+    game_window.render(game_state)
