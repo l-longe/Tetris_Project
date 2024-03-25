@@ -1,5 +1,6 @@
 # gamestate.py
 """Holds the game data that represents the state of the game."""
+from random import randint
 
 
 class GameState:
@@ -20,7 +21,7 @@ class GameState:
 
     def __init__(self):
         self.mino_4x4 = []
-        self.mino: int = 1
+        self.mino: int = randint(1, 7)
 
         self.pos_x: int = 3
         self.pos_y: int = 0
