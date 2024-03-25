@@ -14,14 +14,18 @@ class GameState:
         rotation (int): The rotation state of the current falling mino. 0=0°, 1=90°, 2=180°, 3=270°
 
         is_quit_triggered (bool): True when a quit action is triggered by the user.
+        grid (list): The grid representing the Tetris board. \n
+            It is the grid on which the tetriminos are drawn and manipulated.
     """
 
     def __init__(self):
         self.mino_4x4 = []
         self.mino: int = 1
 
-        self.pos_x: int = 0
+        self.pos_x: int = 3
         self.pos_y: int = 0
         self.rotation: int = 0
 
         self.is_quit_triggered: bool = False
+
+        self.grid = []
