@@ -99,16 +99,27 @@ def draw_current_mino_and_ghost(game_state: GameState):
                 game_state.grid[pos_x + _j][pos_y + _i] = grid_4x4[_i][_j]
 
 
-def erase_current_mino(game_state: GameState):
+def erase_current_mino_and_ghost(game_state: GameState):
+    """
+    Removes the current falling tetrimino and it's ghost from the board.
+
+    :param game_state: Current game state and variables
+    """
     # Choose the correct tetrimino instance based on _mino value
     mino = tetriminos.get(game_state.mino)
 
     # Get the tetrimino's 4x4 grid based on it's rotation
     grid_4x4: list = mino.get_rotated_grid(game_state.rotation)
 
+    # Erase ghost
+    for _i in range(10):
+        for _j in range(21):
+            if game_state.grid[_i][_j] == 8:  # Ghost cells are marked with 8
+                game_state.grid[_i][_j] = 0
+
+    # Erase mino
     pos_x: int = game_state.pos_x
     pos_y: int = game_state.pos_y
-
     for _i in range(4):
         for _j in range(4):
             if grid_4x4[_i][_j] != 0:  # if the cell is not empty
