@@ -57,14 +57,15 @@ def _create_next_mino(game_state: GameState):
     game_window.draw_current_mino_and_ghost(game_state)
     game_window.render(game_state)
 
-    # set the current mino to the next mino, and set the next mino to a random value
-    game_state.mino = game_state.next_mino
-    game_state.next_mino = randint(1, 7)
+    if tetrimino_check.can_fit_in_grid(game_state.next_mino):
+        # set the current mino to the next mino, and set the next mino to a random value
+        game_state.mino = game_state.next_mino
+        game_state.next_mino = randint(1, 7)
 
-    # set to default position and rotation, and mark is_holding_mino as False
-    game_state.pos_x, game_state.pos_y = 3, 0
-    game_state.rotation = 0
-    game_state.is_holding_mino = False
+        # set to default position and rotation, and mark is_holding_mino as False
+        game_state.pos_x, game_state.pos_y = 3, 0
+        game_state.rotation = 0
+        game_state.is_holding_mino = False
 
 
 def _process_user_input(game_state: GameState, event):
