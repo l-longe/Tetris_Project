@@ -27,9 +27,13 @@ def is_at_bottom(x, y, mino, r):
 
     for _i in range(4):
         for _j in range(4):
-            if grid[_i][_j] != 0:
+            if grid[_i][_j] != 0:  # If the cell is not empty
+
                 if (y + _i + 1) > 20:
                     return True  # The mino is at the bottom of the grid
+
+                elif game_state.grid[x + _j][y + _i + 1] != 0 and game_state.grid[x + _j][y + _i + 1] != 8:
+                    return True  # it will land on a cell that is neither empty nor a ghost cell
     return False
 
 
@@ -75,12 +79,12 @@ def is_at_right_edge(x, y, _mino, r):
     tetrimino = tetriminos.get(_mino)
 
     # Get the grid based on rotation
-    grid = tetrimino.get_rotated_grid(r)
+    grid_4x4 = tetrimino.get_rotated_grid(r)
     """ The 4x4 grid of the tetrimino based on the rotation. """
 
     for _i in range(4):
         for _j in range(4):
-            if grid[_i][_j] != 0:  # If the cell is not empty
+            if grid_4x4[_i][_j] != 0:
                 if (x + _j + 1) > 9:
                     return True
                 elif game_state.grid[x + _j + 1][y + _i] != 0:
