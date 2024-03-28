@@ -89,6 +89,36 @@ def is_at_right_edge(x, y, _mino, r):
     return False
 
 
+def can_rotate_right(x, y, _mino, r):
+    """
+    Returns true if turning right is possible.
+
+    :param x: The x position of the mino
+    :param y: The y position of the mino
+    :param _mino: The mino
+    :param r: The rotation of the mino
+    """
+
+    # Choose the correct Tetrimino instance based on _mino value
+    tetrimino = tetriminos.get(_mino)
+
+    next_rotation: int = r + 1 if r < 3 else 0  # Rotations go from 0 to 3
+
+    # Get the grid based on rotation
+    grid_4x4 = tetrimino.get_rotated_grid(next_rotation)
+    """ The 4x4 grid of the tetrimino based on the rotation. """
+
+    for _i in range(4):
+        for _j in range(4):
+            if grid_4x4[_i][_j] != 0:
+                if (x + _j) < 0 or (x + _j) > 9 or (y + _i) < 0 or (y + _i) > 20:
+                    return False
+                elif game_state.grid[x + _j][y + _i] != 0:
+                    return False
+
+    return True
+
+
 def can_fit_in_grid(_mino):
     """
     Returns True if there is enough space to add this mino to the grid.

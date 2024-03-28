@@ -73,6 +73,7 @@ def _process_user_input(game_state: GameState, event):
     Converts user input into game actions. \n
     - K_LEFT: Left = Move left
     - K_RIGHT: Right = Move right
+    - K_UP or K_w: Up or x = Rotate right
 
     :param game_state: Current game state and variables
     :param event: The event to process
@@ -84,6 +85,8 @@ def _process_user_input(game_state: GameState, event):
 
     elif event.key == py_locals.K_RIGHT:
         _process_move_right(game_state)
+    elif event.key == py_locals.K_UP or event.key == py_locals.K_w:
+        _process_rotate_right(game_state)
 
 
 def _process_move_left(game_state):
@@ -114,5 +117,69 @@ def _process_move_right(game_state: GameState):
         game_state.pos_x += 1
 
     # Now draw the mino, ghost and sidebar
+    game_window.draw_current_mino_and_ghost(game_state)
+    game_window.render(game_state)
+
+
+def _process_rotate_right(game_state: GameState):
+    """
+    Rotates the current mino to the right.
+
+    It also performs a kick if the mino cannot rotate at the current position.\n
+    A kick is when the mino is moved to the left or right, or up or down, to allow it to rotate.
+
+    A series of kicks are attempted in the following order:
+    1. Kick down
+    2. Kick left
+    3. Kick right
+    4. Kick up
+    5. Kick down and left
+    6. Kick down and right
+
+    :param game_state: Current game state and variables
+    """
+
+    # Creating a copy of the game state variable so that subsequent lines of code are not too long
+    state = game_state  # state is a reference to game_state. changes to state will change game_state
+
+    # Rotate right
+    if tetrimino_check.can_rotate_right(state.pos_x, state.pos_y, state.mino, state.rotation):
+        state.rotation += 1
+
+    # Kick down
+    elif tetrimino_check.can_rotate_right(state.pos_x, state.pos_y - 1, state.mino, state.rotation):
+        state.pos_y -= 1
+        state.rotation += 1
+
+    # Kick left
+    elif tetrimino_check.can_rotate_right(state.pos_x + 1, state.pos_y, state.mino, state.rotation):
+        state.pos_x += 1
+        state.rotation += 1
+
+    # Kick right
+    elif tetrimino_check.can_rotate_right(state.pos_x - 1, state.pos_y, state.mino, state.rotation):
+        state.pos_x -= 1
+        state.rotation += 1
+
+    # Kick up
+    elif tetrimino_check.can_rotate_right(state.pos_x, state.pos_y - 2, state.mino, state.rotation):
+        state.pos_y -= 2
+        state.rotation += 1
+
+    # Kick down and left
+    elif tetrimino_check.can_rotate_right(state.pos_x + 2, state.pos_y, state.mino, state.rotation):
+        state.pos_x += 2
+        state.rotation += 1
+
+    # Kick down and right
+    elif tetrimino_check.can_rotate_right(state.pos_x - 2, state.pos_y, state.mino, state.rotation):
+        state.pos_x -= 2
+        state.rotation += 1
+
+    # Rotate back to 0 if rotation is 4
+    if game_state.rotation == 4:
+        game_state.rotation = 0
+
+    # Noe draw the mino, ghost and sidebar
     game_window.draw_current_mino_and_ghost(game_state)
     game_window.render(game_state)
