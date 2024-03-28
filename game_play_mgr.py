@@ -83,6 +83,7 @@ def _process_user_input(game_state: GameState, event):
     - K_RIGHT: Right = Move right
     - K_UP or K_w: Up or x = Rotate right
     - K_z or K_LCTRL: z or Left ctrl = Rotate left
+    - K_SPACE: Space = Hard drop
 
     :param game_state: Current game state and variables
     :param event: The event to process
@@ -100,6 +101,9 @@ def _process_user_input(game_state: GameState, event):
 
     elif event.key == py_locals.K_z or event.key == py_locals.K_LCTRL:
         _process_rotate_left(game_state)
+
+    elif event.key == py_locals.K_SPACE:
+        _process_hard_drop(game_state)
 
 
 def _process_move_left(game_state):
@@ -257,5 +261,20 @@ def _process_rotate_left(game_state: GameState):
         game_state.rotation = 3
 
     # Now draw the mino, ghost and sidebar
+    game_window.draw_current_mino_and_ghost(game_state)
+    game_window.render(game_state)
+
+
+def _process_hard_drop(game_state: GameState):
+    """
+    Processes a hard drop. \n
+    A hard drop is when the mino is dropped to the bottom instantly.
+
+    :param game_state: Current game state and variables
+    """
+
+    while not tetrimino_check.is_at_bottom(game_state.pos_x, game_state.pos_y, game_state.mino, game_state.rotation):
+        game_state.pos_y += 1
+
     game_window.draw_current_mino_and_ghost(game_state)
     game_window.render(game_state)
