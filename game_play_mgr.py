@@ -89,13 +89,15 @@ def _process_user_input(game_state: GameState, event):
     """
     game_window.erase_current_mino_and_ghost(game_state)
 
-    if event.key == py_locals.K_LEFT:
+    if event.key == py_locals.K_LEFT or event.key == py_locals.K_a:
         _process_move_left(game_state)
 
-    elif event.key == py_locals.K_RIGHT:
+    elif event.key == py_locals.K_RIGHT or event.key == py_locals.K_d:
         _process_move_right(game_state)
+
     elif event.key == py_locals.K_UP or event.key == py_locals.K_w:
         _process_rotate_right(game_state)
+
     elif event.key == py_locals.K_z or event.key == py_locals.K_LCTRL:
         _process_rotate_left(game_state)
 
