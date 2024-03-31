@@ -88,12 +88,14 @@ def _remove_full_rows(game_state: GameState):
 
     :param game_state: Current game state and variables
     """
+    removed_rows = 0
     for j in range(21):
         is_full = True
         for i in range(10):
             if game_state.grid[i][j] == 0:
                 is_full = False
         if is_full:
+            removed_rows += 1
             k = j
             while k > 0:
                 for i in range(10):
