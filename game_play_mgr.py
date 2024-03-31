@@ -85,7 +85,7 @@ def _process_user_input(game_state: GameState, event):
     - K_LEFT: Left = Move left
     - K_RIGHT: Right = Move right
     - K_UP or K_w: Up or x = Rotate right
-    - K_z or K_LCTRL: z or Left ctrl = Rotate left
+    - K_DOWN or K_s: z or Left ctrl = Rotate left
     - K_SPACE: Space = Hard drop
 
     :param game_state: Current game state and variables
@@ -102,7 +102,7 @@ def _process_user_input(game_state: GameState, event):
     elif event.key == py_locals.K_UP or event.key == py_locals.K_w:
         _process_rotate_right(game_state)
 
-    elif event.key == py_locals.K_z or event.key == py_locals.K_LCTRL:
+    elif event.key == py_locals.K_DOWN or event.key == py_locals.K_s:
         _process_rotate_left(game_state)
 
     elif event.key == py_locals.K_SPACE:
