@@ -1,13 +1,11 @@
 import pygame
 import pygame.locals as py_locals
-
-FRAME_RATE = 30
-""" The frame rate of the game. """
+from gamestate import GameState
 
 
-def to_normal():
+def to_normal(game_state: GameState):
     """ Sets the speed of the game to the normal speed. """
-    pygame.time.set_timer(pygame.USEREVENT, FRAME_RATE * 10)
+    pygame.time.set_timer(pygame.USEREVENT, game_state.frame_rate * 10)
 
 
 def to_fastest():
@@ -15,7 +13,7 @@ def to_fastest():
     pygame.time.set_timer(pygame.USEREVENT, 1)
 
 
-def to_dynamic():
+def to_dynamic(game_state: GameState):
     """
     Sets the speed of the game based on whether a key was recently pressed.
     """
@@ -23,4 +21,4 @@ def to_dynamic():
     if keys_pressed[py_locals.K_DOWN]:
         to_fastest()
     else:
-        to_normal()
+        to_normal(game_state)

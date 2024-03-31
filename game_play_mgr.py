@@ -37,7 +37,7 @@ def _draw_minos(game_state: GameState):
 
     :param game_state: Current game state and variables
     """
-    game_speed.to_dynamic()
+    game_speed.to_dynamic(game_state)
 
     game_window.draw_current_mino_and_ghost(game_state)
     game_window.render(game_state)

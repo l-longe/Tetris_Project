@@ -24,6 +24,9 @@ class GameState:
 
         grid (list): The grid representing the Tetris board. \n
             It is the grid on which the tetriminos are drawn and manipulated.
+
+        frame_rate (int): The frame rate for the game's update speed. \n
+            A higher value means a slower update speed.
     """
 
     def __init__(self):
@@ -40,3 +43,5 @@ class GameState:
         self.post_landing_delay: int = 0
 
         self.grid = []
+
+        self.frame_rate = 30

@@ -32,7 +32,7 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
     _screen = pygame.display.set_mode(SCREEN_SIZE)
 
-    game_speed.to_normal()
+    game_speed.to_normal(game_state)
     pygame.display.set_caption(TEXT_TITLE)
 
     tetrimino_check.game_state = game_state  # Save a reference to the game state in tetrimino_check
