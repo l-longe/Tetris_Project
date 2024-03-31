@@ -49,6 +49,8 @@ def _draw_minos(game_state: GameState):
     else:  # The mino has landed, and we need to create a new mino
         _create_next_mino(game_state)
 
+    _remove_full_rows(game_state)
+
 
 def _create_next_mino(game_state: GameState):
     """
@@ -79,13 +81,35 @@ def _create_next_mino(game_state: GameState):
             game_state.is_holding_mino = False
 
 
+def _remove_full_rows(game_state: GameState):
+    """
+    Removes full rows (if any). \n
+    Full rows are rows that are completely filled with blocks.
+
+    :param game_state: Current game state and variables
+    """
+    removed_rows = 0
+    for j in range(21):
+        is_full = True
+        for i in range(10):
+            if game_state.grid[i][j] == 0:
+                is_full = False
+        if is_full:
+            removed_rows += 1
+            k = j
+            while k > 0:
+                for i in range(10):
+                    game_state.grid[i][k] = game_state.grid[i][k - 1]
+                k -= 1
+
+
 def _process_user_input(game_state: GameState, event):
     """
     Converts user input into game actions. \n
     - K_LEFT: Left = Move left
     - K_RIGHT: Right = Move right
     - K_UP or K_w: Up or x = Rotate right
-    - K_z or K_LCTRL: z or Left ctrl = Rotate left
+    - K_DOWN or K_s: z or Left ctrl = Rotate left
     - K_SPACE: Space = Hard drop
 
     :param game_state: Current game state and variables
@@ -102,7 +126,7 @@ def _process_user_input(game_state: GameState, event):
     elif event.key == py_locals.K_UP or event.key == py_locals.K_w:
         _process_rotate_right(game_state)
 
-    elif event.key == py_locals.K_z or event.key == py_locals.K_LCTRL:
+    elif event.key == py_locals.K_DOWN or event.key == py_locals.K_s:
         _process_rotate_left(game_state)
 
     elif event.key == py_locals.K_SPACE:
