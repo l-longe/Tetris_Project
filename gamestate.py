@@ -21,6 +21,9 @@ class GameState:
         post_landing_delay (int): A short delay after a mino lands, and before the next mino starts falling. \n
             It does not apply if the current mino is hard dropped.
             It allows the user to move the mino left or right, just after it lands.
+        held_mino (int): The type of the mino that is currently on hold. \n
+            -1 means no mino is on hold.
+        is_holding_mino (bool): True if the player is currently holding a mino.
 
         grid (list): The grid representing the Tetris board. \n
             It is the grid on which the tetriminos are drawn and manipulated.
@@ -41,6 +44,9 @@ class GameState:
 
         self.in_hard_drop: bool = False
         self.post_landing_delay: int = 0
+
+        self.held_mino: int = -1
+        self.is_holding_mino: bool = False
 
         self.grid = []
 
