@@ -6,8 +6,8 @@ import game_window
 from gamestate import GameState
 from screen_constants import SCREEN_SIZE
 import tetrimino_check
+import game_speed
 
-FRAME_RATE = 30
 
 TEXT_TITLE = "TETRIS"
 """ The title of the game. """
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
     _screen = pygame.display.set_mode(SCREEN_SIZE)
 
-    pygame.time.set_timer(pygame.USEREVENT, FRAME_RATE * 10)
+    game_speed.to_normal()
     pygame.display.set_caption(TEXT_TITLE)
 
     tetrimino_check.game_state = game_state  # Save a reference to the game state in tetrimino_check
