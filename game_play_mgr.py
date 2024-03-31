@@ -49,6 +49,8 @@ def _draw_minos(game_state: GameState):
     else:  # The mino has landed, and we need to create a new mino
         _create_next_mino(game_state)
 
+    _remove_full_rows(game_state)
+
 
 def _create_next_mino(game_state: GameState):
     """
@@ -77,6 +79,26 @@ def _create_next_mino(game_state: GameState):
             game_state.pos_x, game_state.pos_y = 3, 0
             game_state.rotation = 0
             game_state.is_holding_mino = False
+
+
+def _remove_full_rows(game_state: GameState):
+    """
+    Removes full rows (if any). \n
+    Full rows are rows that are completely filled with blocks.
+
+    :param game_state: Current game state and variables
+    """
+    for j in range(21):
+        is_full = True
+        for i in range(10):
+            if game_state.grid[i][j] == 0:
+                is_full = False
+        if is_full:
+            k = j
+            while k > 0:
+                for i in range(10):
+                    game_state.grid[i][k] = game_state.grid[i][k - 1]
+                k -= 1
 
 
 def _process_user_input(game_state: GameState, event):
