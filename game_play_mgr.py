@@ -7,6 +7,7 @@ import pygame.locals as py_locals
 import game_window
 import tetrimino_check
 from gamestate import GameState
+import game_speed
 
 
 def game_play_loop(game_state: GameState):
@@ -36,6 +37,8 @@ def _draw_minos(game_state: GameState):
 
     :param game_state: Current game state and variables
     """
+    game_speed.to_dynamic(game_state)
+
     game_window.draw_current_mino_and_ghost(game_state)
     game_window.render(game_state)
     game_window.erase_current_mino_and_ghost(game_state)
@@ -53,27 +56,27 @@ def _create_next_mino(game_state: GameState):
 
     :param game_state: Contains all the variables that represent the state of the game
     """
-    # draw the current mino and it's ghost
-    game_window.draw_current_mino_and_ghost(game_state)
-    game_window.render(game_state)
+    # Give the user a short delay to move the mino left or right, just after it (softly) lands
+    if not game_state.in_hard_drop and game_state.post_landing_delay < 6:
+        game_state.post_landing_delay += 1
+    else:
+        # Reset the hard drop and after drop delay variables
+        game_state.in_hard_drop = False
+        game_state.post_landing_delay = 0
 
-    # set the current mino to the next mino, and set the next mino to a random value
-    game_state.mino = game_state.next_mino
-    game_state.next_mino = randint(1, 7)
+        # draw the current mino and it's ghost
+        game_window.draw_current_mino_and_ghost(game_state)
+        game_window.render(game_state)
 
-    # set to default position and rotation, and mark is_holding_mino as False
-    game_state.pos_x, game_state.pos_y = 3, 0
-    game_state.rotation = 0
-    game_state.is_holding_mino = False
-    if tetrimino_check.can_fit_in_grid(game_state.next_mino):
-        # set the current mino to the next mino, and set the next mino to a random value
-        game_state.mino = game_state.next_mino
-        game_state.next_mino = randint(1, 7)
+        if tetrimino_check.can_fit_in_grid(game_state.next_mino):
+            # set the current mino to the next mino, and set the next mino to a random value
+            game_state.mino = game_state.next_mino
+            game_state.next_mino = randint(1, 7)
 
-        # set to default position and rotation, and mark is_holding_mino as False
-        game_state.pos_x, game_state.pos_y = 3, 0
-        game_state.rotation = 0
-        game_state.is_holding_mino = False
+            # set to default position and rotation, and mark is_holding_mino as False
+            game_state.pos_x, game_state.pos_y = 3, 0
+            game_state.rotation = 0
+            game_state.is_holding_mino = False
 
 
 def _process_user_input(game_state: GameState, event):
@@ -275,6 +278,9 @@ def _process_hard_drop(game_state: GameState):
 
     while not tetrimino_check.is_at_bottom(game_state.pos_x, game_state.pos_y, game_state.mino, game_state.rotation):
         game_state.pos_y += 1
+
+    game_state.in_hard_drop = True
+    game_speed.to_fastest()
 
     game_window.draw_current_mino_and_ghost(game_state)
     game_window.render(game_state)
