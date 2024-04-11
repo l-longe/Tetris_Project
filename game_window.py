@@ -44,6 +44,7 @@ def render(game_state: GameState):
 
     _draw_sidebar()
     _draw_next_mino(game_state)
+    _draw_held_mino(game_state)
 
 
 def _draw_grid(game_state: GameState):
@@ -164,3 +165,19 @@ def _draw_next_mino(game_state: GameState):
                     ui_constants.BLOCK_COLOURS[grid_4x4_next[_i][_j]],
                     Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE)
                 )
+
+
+def _draw_held_mino(game_state: GameState):
+    # Draw the held mino, if it exists
+    if game_state.held_mino != -1:
+        grid_4x4_held = tetriminos.get(game_state.held_mino).get_rotated_grid(0)
+        for _i in range(4):
+            for _j in range(4):
+                pos_x = side_bar_pos.all_mino_pos_x + BLOCK_SIZE * _j
+                pos_y = side_bar_pos.hold_mino_pos_y + BLOCK_SIZE * _i
+                if grid_4x4_held[_i][_j] != 0:
+                    pygame.draw.rect(
+                        screen,
+                        ui_constants.BLOCK_COLOURS[grid_4x4_held[_i][_j]],
+                        Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE)
+                    )
