@@ -9,9 +9,13 @@ import tetriminos
 from gamestate import GameState
 from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE, SIDE_BAR_RECT
 import ui_constants
+from side_bar_positions import Side_Bar_Positions
 
 screen: pygame.Surface
 """ A reference to the screen to draw on. """
+
+side_bar_pos = Side_Bar_Positions()
+""" The positions of the sidebar elements. """
 
 
 def initialise_grid_cell_colours(game_state: GameState):
@@ -37,7 +41,9 @@ def render(game_state: GameState):
     screen.fill(ui_constants.COLOUR_BKG_GREY_1)
 
     _draw_grid(game_state)
+
     _draw_sidebar()
+    _draw_next_mino(game_state)
 
 
 def _draw_grid(game_state: GameState):
@@ -144,3 +150,17 @@ def _draw_sidebar():
         ui_constants.COLOUR_BKG_WHITE,
         SIDE_BAR_RECT
     )
+
+
+def _draw_next_mino(game_state: GameState):
+    grid_4x4_next = tetriminos.get(game_state.next_mino).get_rotated_grid(0)
+    for _i in range(4):
+        for _j in range(4):
+            pos_x = side_bar_pos.all_mino_pos_x + BLOCK_SIZE * _j
+            pos_y = side_bar_pos.next_mino_pos_y + BLOCK_SIZE * _i
+            if grid_4x4_next[_i][_j] != 0:
+                pygame.draw.rect(
+                    screen,
+                    ui_constants.BLOCK_COLOURS[grid_4x4_next[_i][_j]],
+                    Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE)
+                )
