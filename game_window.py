@@ -26,7 +26,13 @@ def initialise_grid_cell_colours(game_state: GameState):
         game_state.grid.append(row)
 
 
-def render(game_state: GameState):  # TODO: rename to draw_grid
+def render(game_state: GameState):
+    """
+    Renders the game. \n
+    Draws the grid, borders, sidebar and all the elements in it.
+
+    :param game_state: Current game state and variables
+    """
     screen.fill(ui_constants.COLOUR_BKG_GREY_1)
     _draw_grid(game_state)
 
