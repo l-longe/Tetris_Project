@@ -16,6 +16,7 @@ def update_loop(screen: pygame.Surface, clock: pygame.time.Clock):
     :param clock: The clock to control the frame rate
     """
     _draw_two_tone_background(screen)
+    _display_title(screen)
 
     pygame.display.update()
     clock.tick(3)
@@ -36,3 +37,14 @@ def _draw_two_tone_background(screen: pygame.Surface):
         ui_constants.COLOUR_BKG_BROWN,
         Rect(0, SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT/2)
     )
+
+
+def _display_title(screen: pygame.Surface):
+    """
+    Renders the title and the footer text.
+
+    :param screen: The screen to draw on
+    """
+
+    title_text = ui_constants.get_text_surface(ui_constants.TEXT_TITLE, font_size=50)
+    screen.blit(title_text, (75, 120))
