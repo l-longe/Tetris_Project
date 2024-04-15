@@ -45,6 +45,7 @@ def render(game_state: GameState):
     _draw_sidebar()
     _draw_next_mino(game_state)
     _draw_held_mino(game_state)
+    _draw_sidebar_text(game_state)
 
 
 def _draw_grid(game_state: GameState):
@@ -181,3 +182,9 @@ def _draw_held_mino(game_state: GameState):
                         ui_constants.BLOCK_COLOURS[grid_4x4_held[_i][_j]],
                         Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE)
                     )
+
+
+def _draw_sidebar_text(game_state: GameState):
+    """ Draws the text on the sidebar. """
+    screen.blit(side_bar_pos.hold_text, (side_bar_pos.all_text_pos_x, side_bar_pos.hold_text_pos_y))
+    screen.blit(side_bar_pos.next_text, (side_bar_pos.all_text_pos_x, side_bar_pos.next_text_pos_y))
