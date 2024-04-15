@@ -43,8 +43,8 @@ def render(game_state: GameState):
     _draw_grid(game_state)
 
     _draw_sidebar()
-    _draw_next_mino(game_state)
-    _draw_held_mino(game_state)
+    _draw_sidebar_next_mino(game_state)
+    _draw_sidebar_held_mino(game_state)
     _draw_sidebar_text(game_state)
 
 
@@ -154,7 +154,7 @@ def _draw_sidebar():
     )
 
 
-def _draw_next_mino(game_state: GameState):
+def _draw_sidebar_next_mino(game_state: GameState):
     grid_4x4_next = tetriminos.get(game_state.next_mino).get_rotated_grid(0)
     for _i in range(4):
         for _j in range(4):
@@ -168,8 +168,8 @@ def _draw_next_mino(game_state: GameState):
                 )
 
 
-def _draw_held_mino(game_state: GameState):
-    # Draw the held mino, if it exists
+def _draw_sidebar_held_mino(game_state: GameState):
+    """ Draws the held mino on the sidebar. """
     if game_state.held_mino != -1:
         grid_4x4_held = tetriminos.get(game_state.held_mino).get_rotated_grid(0)
         for _i in range(4):
