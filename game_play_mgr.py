@@ -51,6 +51,11 @@ def _draw_minos(game_state: GameState):
 
     _remove_full_rows(game_state)
 
+    # Increase level and goal
+    if game_state.goal < 1 and game_state.level < 15:
+        game_state.level += 1
+        game_state.goal += game_state.level * 5
+
 
 def _create_next_mino(game_state: GameState):
     """
