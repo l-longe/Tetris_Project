@@ -89,6 +89,7 @@ def _create_next_mino(game_state: GameState):
         else:
             # set game over if next mino cannot fit in grid
             game_state.is_game_over = True
+            game_state.is_game_started = False
             pygame.time.set_timer(pygame.USEREVENT, 1)
 
 
