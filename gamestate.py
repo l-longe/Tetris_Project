@@ -20,8 +20,10 @@ class GameState:
                     -1 means no mino is on hold.
         is_holding_mino (bool): True if the player is currently holding a mino.
 
-        is_quit_triggered (bool): True when a quit action is triggered by the user.
+        is_game_paused (bool): True if a game is currently paused.
         is_game_over (bool): True if a game is over (player lost or game ended).
+
+        is_quit_triggered (bool): True when a quit action is triggered by the user.
 
         in_hard_drop (bool): True when the current mino is being hard (fast) dropped.
         post_landing_delay (int): A short delay after a mino lands, and before the next mino starts falling. \n
@@ -48,8 +50,10 @@ class GameState:
         self.held_mino: int = -1
         self.is_holding_mino: bool = False
 
-        self.is_quit_triggered: bool = False
+        self.is_game_paused: bool = False
         self.is_game_over: bool = False
+
+        self.is_quit_triggered: bool = False
 
         self.in_hard_drop: bool = False
         self.post_landing_delay: int = 0
