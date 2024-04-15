@@ -52,6 +52,10 @@ class GameState:
         self.in_hard_drop: bool = False
         self.post_landing_delay: int = 0
 
+        self.score: int = 0
+        self.level: int = 1
+        self.goal: int = self.level * 5
+
         self.grid = []
 
         self.frame_rate = 30
