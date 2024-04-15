@@ -1,4 +1,5 @@
 # main.py
+""" This module contains the main game loop. """
 
 import pygame
 import game_play_mgr
