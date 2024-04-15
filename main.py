@@ -2,6 +2,7 @@
 
 import pygame
 import game_play_mgr
+import game_over_mgr
 import game_window
 from gamestate import GameState
 from screen_constants import SCREEN_SIZE
@@ -18,9 +19,11 @@ def _update_loop():
     The main game loop.
     Runs until the user quits the game.
     """
-    while not game_state.is_quit_triggered and not game_state.is_game_over:
-        game_play_mgr.game_play_loop(game_state)
-
+    while not game_state.is_quit_triggered:
+        if game_state.is_game_over:
+            game_over_mgr.update_loop(game_state, _screen)
+        else:
+            game_play_mgr.game_play_loop(game_state)
     pygame.quit()
 
 
