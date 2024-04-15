@@ -1,6 +1,28 @@
 # ui_constants.py
 """ This module contains hard-coded settings for the UI. """
 
+import pygame
+
+pygame.init()
+
+# Fonts
+FONT_OPEN_SANS_LIGHT = "./fonts/OpenSans-Light.ttf"
+FONT_OPEN_SANS_BOLD = "./fonts/OpenSans-Bold.ttf"
+FONT_INCONSOLATA = "./fonts/Inconsolata/Inconsolata.otf"
+
+_FONT_OPEN_SANS_LIGHT_50 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 50)
+FONT_OPEN_SANS_LIGHT_30 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 30)
+FONT_OPEN_SANS_LIGHT_20 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 20)
+FONT_OPEN_SANS_LIGHT_13 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 13)
+FONT_OPEN_SANS_LIGHT_10 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 10)
+
+FONT_OPEN_SANS_BOLD_50 = pygame.font.Font(FONT_OPEN_SANS_BOLD, 50)
+FONT_OPEN_SANS_BOLD_30 = pygame.font.Font(FONT_OPEN_SANS_BOLD, 30)
+
+FONT_INCONSOLATA_30 = pygame.font.Font(FONT_INCONSOLATA, 30)
+FONT_INCONSOLATA_13 = pygame.font.Font(FONT_INCONSOLATA, 13)
+
+
 # Background colors
 COLOUR_BKG_BLACK = (10, 10, 10)
 COLOUR_BKG_WHITE = (255, 255, 255)
