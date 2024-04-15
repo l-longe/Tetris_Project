@@ -83,6 +83,6 @@ def _process_user_input(game_state: GameState, event):
     # Return to continue
     if event.key == K_RETURN:
         game_state.reset()
-        game_window.initialise_grid_cell_colours(game_state)
+        game_window.reset_grid_background_colours(game_state)
 
         pygame.time.set_timer(pygame.USEREVENT, 1)

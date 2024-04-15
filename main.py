@@ -46,5 +46,5 @@ if __name__ == '__main__':
 
     tetrimino_check.game_state = game_state  # Save a reference to the game state in tetrimino_check
     game_window.screen = _screen  # Save a reference to the screen in screen_renderer
-    game_window.initialise_grid_cell_colours(game_state)
+    game_window.reset_grid_background_colours(game_state)
     _update_loop()
