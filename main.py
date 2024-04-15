@@ -28,7 +28,7 @@ def _update_loop():
         elif game_state.is_game_started:\
             game_play_mgr.game_play_loop(game_state)
         else:
-            game_start_mgr.update_loop(_screen, clock)
+            game_start_mgr.update_loop(game_state, _screen, clock)
 
     pygame.quit()
 

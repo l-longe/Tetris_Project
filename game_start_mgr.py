@@ -3,23 +3,34 @@
  which Manages the behaviour of the game before and while it is started. """
 
 import pygame
-from pygame.locals import Rect
+from pygame.locals import QUIT, KEYDOWN, K_SPACE, Rect
 import ui_constants
+from gamestate import GameState
 from screen_constants import SCREEN_HEIGHT, SCREEN_WIDTH
 
 
-def update_loop(screen: pygame.Surface, clock: pygame.time.Clock):
+def update_loop(game_state: GameState, screen: pygame.Surface, clock: pygame.time.Clock):
     """
-    Displays the start screen and processes user inputs.
+    Displays the start screen and leaderboard, and processes user inputs.
 
+    :param game_state: Current game state and variables
     :param screen: The screen to draw on
     :param clock: The clock to control the frame rate
     """
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            game_state.is_quit_triggered = True
+
+        elif event.type == KEYDOWN:
+            if event.key == K_SPACE:
+                game_state.is_game_started = True
+
     _draw_two_tone_background(screen)
     _display_title_and_footer(screen)
 
-    pygame.display.update()
-    clock.tick(3)
+    if not game_state.is_game_started:
+        pygame.display.update()
+        clock.tick(3)
 
 
 def _draw_two_tone_background(screen: pygame.Surface):
