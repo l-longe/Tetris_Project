@@ -17,7 +17,7 @@ side_bar_pos = Side_Bar_Positions()
 """ The positions of the sidebar elements. """
 
 
-def initialise_grid_cell_colours(game_state: GameState):
+def reset_grid_background_colours(game_state: GameState):
     """ Resets the colours of all the cells in the grid to the default colour. """
     default_cell_colour = 0  # COLOUR_BKG_GREY_3
 

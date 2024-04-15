@@ -20,7 +20,13 @@ class GameState:
                     -1 means no mino is on hold.
         is_holding_mino (bool): True if the player is currently holding a mino.
 
+        is_game_started (bool): True if a game has started.
+        is_game_paused (bool): True if a game is currently paused.
+        is_game_over (bool): True if a game is over (player lost or game ended).
+
         is_quit_triggered (bool): True when a quit action is triggered by the user.
+
+        is_text_blinking (bool): Indicates if certain UI elements should be blinking.
 
         in_hard_drop (bool): True when the current mino is being hard (fast) dropped.
         post_landing_delay (int): A short delay after a mino lands, and before the next mino starts falling. \n
@@ -47,7 +53,13 @@ class GameState:
         self.held_mino: int = -1
         self.is_holding_mino: bool = False
 
+        self.is_game_started: bool = False
+        self.is_game_paused: bool = False
+        self.is_game_over: bool = False
+
         self.is_quit_triggered: bool = False
+
+        self.is_text_blinking: bool = False
 
         self.in_hard_drop: bool = False
         self.post_landing_delay: int = 0
@@ -58,4 +70,35 @@ class GameState:
 
         self.grid = []
 
+        self.frame_rate = 30
+
+
+    def reset(self):
+        """ Resets the game states to their default values. """
+
+        self.pos_x = 3
+        self.pos_y = 0
+        self.rotation = 0
+
+        self.mino = randint(1, 7)
+        self.next_mino = randint(1, 7)
+
+        self.held_mino = -1
+        self.is_holding_mino = False
+
+        self.is_game_started = False
+        self.is_game_paused = False
+        self.is_game_over = False
+        self.is_quit_triggered = False
+
+        self.is_text_blinking = False
+
+        self.in_hard_drop = False
+        self.post_landing_delay = 0
+
+        self.score = 0
+        self.level = 1
+        self.goal = self.level * 5
+
+        self.grid = [[0 for _ in range(10)] for _ in range(20)]
         self.frame_rate = 30

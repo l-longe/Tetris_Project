@@ -86,6 +86,11 @@ def _create_next_mino(game_state: GameState):
             game_state.pos_x, game_state.pos_y = 3, 0
             game_state.rotation = 0
             game_state.is_holding_mino = False
+        else:
+            # set game over if next mino cannot fit in grid
+            game_state.is_game_over = True
+            game_state.is_game_started = False
+            pygame.time.set_timer(pygame.USEREVENT, 1)
 
 
 def _remove_full_rows(game_state: GameState):
@@ -155,6 +160,9 @@ def _process_user_input(game_state: GameState, event):
 
     elif event.key == py_locals.K_LSHIFT or event.key == py_locals.K_z:
         _process_hold(game_state)
+        
+    elif event.key == py_locals.K_ESCAPE:
+        game_state.is_game_paused = True
 
 
 def _process_move_left(game_state):
