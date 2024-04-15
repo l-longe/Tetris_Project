@@ -54,6 +54,8 @@ GAME_TITLE = "TETRIS"
 PROJECT_TITLE = "282110 _ Lathan Longe - Computing Project - 2024"
 """ The full title of my project. """
 
+START_MESSAGE = "Press space to start"
+""" The flashing text that appears below the title. """
 
 TEXT_PAUSE = "PAUSED"
 """ The text that appears when the game is paused. """

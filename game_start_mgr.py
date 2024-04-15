@@ -27,6 +27,7 @@ def update_loop(game_state: GameState, screen: pygame.Surface, clock: pygame.tim
 
     _draw_two_tone_background(screen)
     _display_title_and_footer(screen)
+    _display_blinking_start_message(game_state, screen)
 
     if not game_state.is_game_started:
         pygame.display.update()
@@ -64,3 +65,19 @@ def _display_title_and_footer(screen: pygame.Surface):
     # Render the footer text
     footer_text = ui_constants.get_text_surface(ui_constants.PROJECT_TITLE, font_size=10)
     screen.blit(footer_text, (35, 355))
+
+def _display_blinking_start_message(game_state: GameState, screen: pygame.Surface):
+    """
+    Renders the blinking start message.
+
+    :param game_state: Current game state and variables
+    :param screen: The screen to draw on
+    """
+
+    if game_state.is_text_blinking:
+        start_msg = ui_constants.get_text_surface(ui_constants.START_MESSAGE,
+                                                  color=ui_constants.COLOUR_BKG_WHITE)
+        screen.blit(start_msg, (92, 195))
+        game_state.is_text_blinking = False
+    else:
+        game_state.is_text_blinking = True

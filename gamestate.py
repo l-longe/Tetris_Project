@@ -26,6 +26,8 @@ class GameState:
 
         is_quit_triggered (bool): True when a quit action is triggered by the user.
 
+        is_text_blinking (bool): Indicates if certain UI elements should be blinking.
+
         in_hard_drop (bool): True when the current mino is being hard (fast) dropped.
         post_landing_delay (int): A short delay after a mino lands, and before the next mino starts falling. \n
             It does not apply if the current mino is hard dropped.
@@ -56,6 +58,8 @@ class GameState:
         self.is_game_over: bool = False
 
         self.is_quit_triggered: bool = False
+
+        self.is_text_blinking: bool = False
 
         self.in_hard_drop: bool = False
         self.post_landing_delay: int = 0
