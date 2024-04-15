@@ -48,4 +48,22 @@ def _show_game_over_text(game_state: GameState, screen: pygame.Surface):
     screen.blit(txt_game_surface, (58, 75))
     screen.blit(txt_over_surface, (62, 105))
 
+    _display_blinking_continue_message(game_state, screen)
     pygame.display.update()
+
+
+def _display_blinking_continue_message(game_state: GameState, screen: pygame.Surface):
+    """
+    Displays the blinking continue message.
+
+    :param game_state: Current game state and variables
+    :param screen: The screen to draw on
+    """
+    if game_state.is_text_blinking:
+        text_continue_surface = ui_constants.get_text_surface(ui_constants.TEXT_RETURN_TO_CONTINUE,
+                                                              color=ui_constants.COLOUR_BKG_WHITE)
+        screen.blit(text_continue_surface, (32, 195))
+        game_state.is_text_blinking = False
+
+    else:
+        game_state.is_text_blinking = True

@@ -66,6 +66,9 @@ TEXT_PAUSE_ESC_CONTINUE = "Press esc to continue"
 TEXT_GAME_OVER = ["GAME", "OVER"]
 """ A list containing the two words that make up the game over text. """
 
+TEXT_RETURN_TO_CONTINUE = "Press return to continue"
+""" The blinking text that appears when the game is over. """
+
 
 def get_text_surface(text: str,
                      font_size: int = 13,
