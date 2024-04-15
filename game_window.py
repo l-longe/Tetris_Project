@@ -3,7 +3,6 @@
 
 import pygame
 from pygame.locals import Rect
-
 import tetrimino_check
 import tetriminos
 from gamestate import GameState
@@ -186,17 +185,17 @@ def _draw_sidebar_held_mino(game_state: GameState):
 
 def _draw_sidebar_text(game_state: GameState):
     """ Draws the text on the sidebar. """
-    screen.blit(side_bar_pos.hold_text, (side_bar_pos.all_text_pos_x, side_bar_pos.hold_text_pos_y))
-    screen.blit(side_bar_pos.next_text, (side_bar_pos.all_text_pos_x, side_bar_pos.next_text_pos_y))
+    screen.blit(side_bar_pos.hold_label, (side_bar_pos.all_label_pos_x, side_bar_pos.hold_label_pos_y))
+    screen.blit(side_bar_pos.next_label, (side_bar_pos.all_label_pos_x, side_bar_pos.next_label_pos_y))
 
-    screen.blit(side_bar_pos.score_text, (side_bar_pos.all_text_pos_x, side_bar_pos.score_text_pos_y))
+    screen.blit(side_bar_pos.score_label, (side_bar_pos.all_label_pos_x, side_bar_pos.score_label_pos_y))
     score_value = side_bar_pos.get_value_text_surface(str(game_state.score))
     screen.blit(score_value, (side_bar_pos.all_numbers_pos_x, side_bar_pos.score_number_pos_y))
 
-    screen.blit(side_bar_pos.level_text, (side_bar_pos.all_text_pos_x, side_bar_pos.level_text_pos_y))
+    screen.blit(side_bar_pos.level_label, (side_bar_pos.all_label_pos_x, side_bar_pos.level_label_pos_y))
     level_value = side_bar_pos.get_value_text_surface(str(game_state.level))
     screen.blit(level_value, (side_bar_pos.all_numbers_pos_x, side_bar_pos.level_number_pos_y))
 
-    screen.blit(side_bar_pos.goal_text, (side_bar_pos.all_text_pos_x, side_bar_pos.goal_text_pos_y))
+    screen.blit(side_bar_pos.goal_label, (side_bar_pos.all_label_pos_x, side_bar_pos.goal_label_pos_y))
     goal_value = side_bar_pos.get_value_text_surface(str(game_state.goal))
     screen.blit(goal_value, (side_bar_pos.all_numbers_pos_x, side_bar_pos.goal_number_pos_y))
