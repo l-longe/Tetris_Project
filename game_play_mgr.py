@@ -65,6 +65,7 @@ def _create_next_mino(game_state: GameState):
         # Reset the hard drop and after drop delay variables
         game_state.in_hard_drop = False
         game_state.post_landing_delay = 0
+        game_state.score += 10 * game_state.level  # Add 10 points (per level) for each landed mino
 
         # draw the current mino and it's ghost
         game_window.draw_current_mino_and_ghost(game_state)
@@ -101,6 +102,19 @@ def _remove_full_rows(game_state: GameState):
                 for i in range(10):
                     game_state.grid[i][k] = game_state.grid[i][k - 1]
                 k -= 1
+    if removed_rows == 1:
+        game_state.score += 50 * game_state.level
+
+    elif removed_rows == 2:
+        game_state.score += 150 * game_state.level
+
+    elif removed_rows == 3:
+        game_state.score += 350 * game_state.level
+
+    elif removed_rows == 4:
+        game_state.score += 1000 * game_state.level
+
+    game_state.goal -= removed_rows
 
 
 def _process_user_input(game_state: GameState, event):
