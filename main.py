@@ -18,7 +18,7 @@ def _update_loop():
     The main game loop.
     Runs until the user quits the game.
     """
-    while not game_state.is_quit_triggered:
+    while not game_state.is_quit_triggered and not game_state.is_game_over:
         game_play_mgr.game_play_loop(game_state)
 
     pygame.quit()

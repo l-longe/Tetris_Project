@@ -86,6 +86,10 @@ def _create_next_mino(game_state: GameState):
             game_state.pos_x, game_state.pos_y = 3, 0
             game_state.rotation = 0
             game_state.is_holding_mino = False
+        else:
+            # set game over if next mino cannot fit in grid
+            game_state.is_game_over = True
+            pygame.time.set_timer(pygame.USEREVENT, 1)
 
 
 def _remove_full_rows(game_state: GameState):
