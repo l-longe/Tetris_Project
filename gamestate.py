@@ -71,3 +71,34 @@ class GameState:
         self.grid = []
 
         self.frame_rate = 30
+
+
+    def reset(self):
+        """ Resets the game states to their default values. """
+
+        self.pos_x = 3
+        self.pos_y = 0
+        self.rotation = 0
+
+        self.mino = randint(1, 7)
+        self.next_mino = randint(1, 7)
+
+        self.held_mino = -1
+        self.is_holding_mino = False
+
+        self.is_game_started = False
+        self.is_game_paused = False
+        self.is_game_over = False
+        self.is_quit_triggered = False
+
+        self.is_text_blinking = False
+
+        self.in_hard_drop = False
+        self.post_landing_delay = 0
+
+        self.score = 0
+        self.level = 1
+        self.goal = self.level * 5
+
+        self.grid = [[0 for _ in range(10)] for _ in range(20)]
+        self.frame_rate = 30

@@ -2,7 +2,7 @@
 """ Manages all the game over related activities, including drawing the screen and processing inputs."""
 
 import pygame
-from pygame.locals import QUIT, USEREVENT
+from pygame.locals import QUIT, USEREVENT, KEYDOWN, K_RETURN
 import game_window
 import ui_constants
 from gamestate import GameState
@@ -21,6 +21,8 @@ def update_loop(game_state: GameState, screen: pygame.Surface):
 
         elif event.type == USEREVENT:
             _show_game_over_text(game_state, screen)
+        elif event.type == KEYDOWN:
+            _process_user_input(game_state, event)
 
 
 def _show_game_over_text(game_state: GameState, screen: pygame.Surface):
@@ -67,3 +69,20 @@ def _display_blinking_continue_message(game_state: GameState, screen: pygame.Sur
 
     else:
         game_state.is_text_blinking = True
+
+
+def _process_user_input(game_state: GameState, event):
+    """
+    Processes the user input \n
+    - Return to continue
+
+    :param game_state: Current game state and variables
+    :param event: The event to process
+    """
+
+    # Return to continue
+    if event.key == K_RETURN:
+        game_state.reset()
+        game_window.initialise_grid_cell_colours(game_state)
+
+        pygame.time.set_timer(pygame.USEREVENT, 1)
