@@ -60,6 +60,9 @@ START_MESSAGE = "Press space to start"
 TEXT_PAUSE = "PAUSED"
 """ The text that appears when the game is paused. """
 
+TEXT_PAUSE_ESC_CONTINUE = "Press esc to continue"
+""" The blinking text that appears when the game is paused. """
+
 TEXT_GAME_OVER = ["GAME", "OVER"]
 """ A list containing the two words that make up the game over text. """
 

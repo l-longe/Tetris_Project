@@ -47,6 +47,7 @@ def _show_pause_text(game_state: GameState, screen: pygame.Surface):
                                                        color=ui_constants.COLOUR_BKG_WHITE)
     screen.blit(text_pause_surface, (43, 100))
 
+    _display_blinking_pause_message(game_state, screen)
     pygame.display.update()
 
 
@@ -59,3 +60,20 @@ def _un_pause_game(game_state: GameState):
 
     game_state.is_game_paused = False
     pygame.time.set_timer(pygame.USEREVENT, 1)
+
+
+def _display_blinking_pause_message(game_state: GameState, screen: pygame.Surface):
+    """
+    Renders the blinking pause message.
+
+    :param game_state: Current game state and variables
+    :param screen: The screen to draw on
+    """
+    if game_state.is_text_blinking:
+        text_continue_surface = ui_constants.get_text_surface(ui_constants.TEXT_PAUSE_ESC_CONTINUE,
+                                                              color=ui_constants.COLOUR_BKG_WHITE)
+        screen.blit(text_continue_surface, (40, 160))
+        game_state.is_text_blinking = False
+
+    else:
+        game_state.is_text_blinking = True
