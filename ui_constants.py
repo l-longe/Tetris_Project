@@ -48,7 +48,7 @@ BLOCK_COLOURS = [COLOUR_BKG_GREY_2,
                  _COLOUR_BLOCK_DARK_Z_GREEN, COLOUR_BKG_GREY_3]
 """ The colors of the blocks in the game. """
 
-TEXT_TITLE = "TETRIS"
+GAME_TITLE = "TETRIS"
 """ The title of the game. """
 
 PROJECT_TITLE = "282110 _ Lathan Longe - Computing Project - 2024"

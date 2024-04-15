@@ -46,9 +46,10 @@ def _display_title_and_footer(screen: pygame.Surface):
     :param screen: The screen to draw on
     """
 
-    title_text = ui_constants.get_text_surface(ui_constants.TEXT_TITLE, font_size=50)
-    screen.blit(title_text, (75, 120))
+    # Render the main title text
+    main_title_text = ui_constants.get_text_surface(ui_constants.GAME_TITLE, font_size=50)
+    screen.blit(main_title_text, (75, 120))
 
     # Render the footer text
-    text_title_info = ui_constants.get_text_surface(ui_constants.PROJECT_TITLE, font_size=10)
-    screen.blit(text_title_info, (35, 355))
+    footer_text = ui_constants.get_text_surface(ui_constants.PROJECT_TITLE, font_size=10)
+    screen.blit(footer_text, (35, 355))
