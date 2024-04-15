@@ -44,6 +44,11 @@ def render(game_state: GameState):
     _draw_sidebar()
     _draw_sidebar_next_mino(game_state)
     _draw_sidebar_held_mino(game_state)
+
+    # Set max score
+    if game_state.score > 999999:
+        _score = 999999
+
     _draw_sidebar_text(game_state)
 
 
