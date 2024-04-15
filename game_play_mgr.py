@@ -159,6 +159,9 @@ def _process_user_input(game_state: GameState, event):
 
     elif event.key == py_locals.K_LSHIFT or event.key == py_locals.K_z:
         _process_hold(game_state)
+        
+    elif event.key == py_locals.K_ESCAPE:
+        game_state.is_game_paused = True
 
 
 def _process_move_left(game_state):
