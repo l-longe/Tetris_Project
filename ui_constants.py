@@ -51,6 +51,10 @@ BLOCK_COLOURS = [COLOUR_BKG_GREY_2,
 TEXT_TITLE = "TETRIS"
 """ The title of the game. """
 
+PROJECT_TITLE = "282110 _ Lathan Longe - Computing Project - 2024"
+""" The full title of my project. """
+
+
 TEXT_PAUSE = "PAUSED"
 """ The text that appears when the game is paused. """
 
