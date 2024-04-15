@@ -20,6 +20,7 @@ class GameState:
                     -1 means no mino is on hold.
         is_holding_mino (bool): True if the player is currently holding a mino.
 
+        is_game_started (bool): True if a game has started.
         is_game_paused (bool): True if a game is currently paused.
         is_game_over (bool): True if a game is over (player lost or game ended).
 
@@ -50,6 +51,7 @@ class GameState:
         self.held_mino: int = -1
         self.is_holding_mino: bool = False
 
+        self.is_game_started: bool = False
         self.is_game_paused: bool = False
         self.is_game_over: bool = False
 

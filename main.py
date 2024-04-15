@@ -4,6 +4,7 @@ import pygame
 import game_play_mgr
 import game_over_mgr
 import game_pause_mgr
+import game_start_mgr
 import game_window
 from gamestate import GameState
 from screen_constants import SCREEN_SIZE
@@ -27,8 +28,10 @@ def _update_loop():
         elif game_state.is_game_over:
             game_over_mgr.update_loop(game_state, _screen)
 
-        else:
+        elif game_state.is_game_started:\
             game_play_mgr.game_play_loop(game_state)
+        else:
+            game_start_mgr.update_loop(_screen, clock)
 
     pygame.quit()
 
