@@ -3,19 +3,22 @@
 
 import pygame
 from pygame.locals import Rect
-from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE
-import ui_constants
-from gamestate import GameState
-import tetriminos
 import tetrimino_check
+import tetriminos
+from gamestate import GameState
+from screen_constants import BOARD_ROW_COUNT, BOARD_COLUMN_COUNT, BLOCK_SIZE, SIDE_BAR_RECT
+import ui_constants
+from side_bar_positions import Side_Bar_Positions
 
 screen: pygame.Surface
 """ A reference to the screen to draw on. """
 
+side_bar_pos = Side_Bar_Positions()
+""" The positions of the sidebar elements. """
+
 
 def initialise_grid_cell_colours(game_state: GameState):
     """ Resets the colours of all the cells in the grid to the default colour. """
-
     default_cell_colour = 0  # COLOUR_BKG_GREY_3
 
     game_state.grid = []
@@ -26,9 +29,22 @@ def initialise_grid_cell_colours(game_state: GameState):
         game_state.grid.append(row)
 
 
-def render(game_state: GameState):  # TODO: rename to draw_grid
+def render(game_state: GameState):
+    """
+    Renders the game. \n
+    Draws the grid, borders, sidebar and all the elements in it.
+
+    :param game_state: Current game state and variables
+    """
+
     screen.fill(ui_constants.COLOUR_BKG_GREY_1)
+
     _draw_grid(game_state)
+
+    _draw_sidebar()
+    _draw_sidebar_next_mino(game_state)
+    _draw_sidebar_held_mino(game_state)
+    _draw_sidebar_text(game_state)
 
 
 def _draw_grid(game_state: GameState):
@@ -76,6 +92,7 @@ def draw_current_mino_and_ghost(game_state: GameState):
 
     # Choose the correct Tetrimino based on mino value
     mino = tetriminos.get(game_state.mino)
+
     # Get the tetrimino's 4x4 grid based on it's rotation
     grid_4x4: list = mino.get_rotated_grid(game_state.rotation)
 
@@ -105,7 +122,8 @@ def erase_current_mino_and_ghost(game_state: GameState):
 
     :param game_state: Current game state and variables
     """
-    # Choose the correct tetrimino instance based on _mino value
+
+    # Choose the correct Tetrimino instance based on _mino value
     mino = tetriminos.get(game_state.mino)
 
     # Get the tetrimino's 4x4 grid based on it's rotation
@@ -124,3 +142,60 @@ def erase_current_mino_and_ghost(game_state: GameState):
         for _j in range(4):
             if grid_4x4[_i][_j] != 0:  # if the cell is not empty
                 game_state.grid[pos_x + _j][pos_y + _i] = 0
+
+
+def _draw_sidebar():
+    """ Draws the sidebar on the right of the board. """
+    pygame.draw.rect(
+        screen,
+        ui_constants.COLOUR_BKG_WHITE,
+        SIDE_BAR_RECT
+    )
+
+
+def _draw_sidebar_next_mino(game_state: GameState):
+    grid_4x4_next = tetriminos.get(game_state.next_mino).get_rotated_grid(0)
+    for _i in range(4):
+        for _j in range(4):
+            pos_x = side_bar_pos.all_mino_pos_x + BLOCK_SIZE * _j
+            pos_y = side_bar_pos.next_mino_pos_y + BLOCK_SIZE * _i
+            if grid_4x4_next[_i][_j] != 0:
+                pygame.draw.rect(
+                    screen,
+                    ui_constants.BLOCK_COLOURS[grid_4x4_next[_i][_j]],
+                    Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE)
+                )
+
+
+def _draw_sidebar_held_mino(game_state: GameState):
+    """ Draws the held mino on the sidebar. """
+    if game_state.held_mino != -1:
+        grid_4x4_held = tetriminos.get(game_state.held_mino).get_rotated_grid(0)
+        for _i in range(4):
+            for _j in range(4):
+                pos_x = side_bar_pos.all_mino_pos_x + BLOCK_SIZE * _j
+                pos_y = side_bar_pos.hold_mino_pos_y + BLOCK_SIZE * _i
+                if grid_4x4_held[_i][_j] != 0:
+                    pygame.draw.rect(
+                        screen,
+                        ui_constants.BLOCK_COLOURS[grid_4x4_held[_i][_j]],
+                        Rect(pos_x, pos_y, BLOCK_SIZE, BLOCK_SIZE)
+                    )
+
+
+def _draw_sidebar_text(game_state: GameState):
+    """ Draws the text on the sidebar. """
+    screen.blit(side_bar_pos.hold_label, (side_bar_pos.all_label_pos_x, side_bar_pos.hold_label_pos_y))
+    screen.blit(side_bar_pos.next_label, (side_bar_pos.all_label_pos_x, side_bar_pos.next_label_pos_y))
+
+    screen.blit(side_bar_pos.score_label, (side_bar_pos.all_label_pos_x, side_bar_pos.score_label_pos_y))
+    score_value = side_bar_pos.get_value_text_surface(str(game_state.score))
+    screen.blit(score_value, (side_bar_pos.all_numbers_pos_x, side_bar_pos.score_number_pos_y))
+
+    screen.blit(side_bar_pos.level_label, (side_bar_pos.all_label_pos_x, side_bar_pos.level_label_pos_y))
+    level_value = side_bar_pos.get_value_text_surface(str(game_state.level))
+    screen.blit(level_value, (side_bar_pos.all_numbers_pos_x, side_bar_pos.level_number_pos_y))
+
+    screen.blit(side_bar_pos.goal_label, (side_bar_pos.all_label_pos_x, side_bar_pos.goal_label_pos_y))
+    goal_value = side_bar_pos.get_value_text_surface(str(game_state.goal))
+    screen.blit(goal_value, (side_bar_pos.all_numbers_pos_x, side_bar_pos.goal_number_pos_y))

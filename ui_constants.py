@@ -1,6 +1,28 @@
 # ui_constants.py
 """ This module contains hard-coded settings for the UI. """
 
+import pygame
+
+pygame.init()
+
+# Fonts
+FONT_OPEN_SANS_LIGHT = "./fonts/OpenSans-Light.ttf"
+FONT_OPEN_SANS_BOLD = "./fonts/OpenSans-Bold.ttf"
+FONT_INCONSOLATA = "./fonts/Inconsolata/Inconsolata.otf"
+
+_FONT_OPEN_SANS_LIGHT_50 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 50)
+FONT_OPEN_SANS_LIGHT_30 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 30)
+FONT_OPEN_SANS_LIGHT_20 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 20)
+FONT_OPEN_SANS_LIGHT_13 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 13)
+FONT_OPEN_SANS_LIGHT_10 = pygame.font.Font(FONT_OPEN_SANS_LIGHT, 10)
+
+FONT_OPEN_SANS_BOLD_50 = pygame.font.Font(FONT_OPEN_SANS_BOLD, 50)
+FONT_OPEN_SANS_BOLD_30 = pygame.font.Font(FONT_OPEN_SANS_BOLD, 30)
+
+FONT_INCONSOLATA_30 = pygame.font.Font(FONT_INCONSOLATA, 30)
+FONT_INCONSOLATA_13 = pygame.font.Font(FONT_INCONSOLATA, 13)
+
+
 # Background colors
 COLOUR_BKG_BLACK = (10, 10, 10)
 COLOUR_BKG_WHITE = (255, 255, 255)
@@ -25,3 +47,23 @@ BLOCK_COLOURS = [COLOUR_BKG_GREY_2,
                  _COLOUR_BLOCK_O_ORANGE, _COLOUR_BLOCK_S_TEAL, _COLOUR_BLOCK_T_MAGENTA,
                  _COLOUR_BLOCK_DARK_Z_GREEN, COLOUR_BKG_GREY_3]
 """ The colors of the blocks in the game. """
+
+
+def get_text_surface(text: str,
+                     font_size: int = 13,
+                     font_file=FONT_OPEN_SANS_LIGHT,
+                     color: tuple = COLOUR_BKG_BLACK) -> pygame.Surface:
+    """
+    Returns a text surface with the given string.
+
+    :param text: The text to render (and scale)
+    :param font_size: The size of the font to render
+    :param font_file: The font file to use
+    :param color: The color of the text
+    :return: A text surface with the given string
+    """
+    actual_font_size = int(font_size)
+    font = pygame.font.Font(font_file, actual_font_size)
+
+    text_surface = font.render(text, 1, color)
+    return text_surface
