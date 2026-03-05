@@ -26,7 +26,7 @@ def _update_loop():
         elif game_state.is_game_over:
             game_over_mgr.update_loop(game_state, _screen)
 
-        elif game_state.is_game_started:\
+        elif game_state.is_game_started:
             game_play_mgr.game_play_loop(game_state)
         else:
             game_start_mgr.update_loop(game_state, _screen, clock)
